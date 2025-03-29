@@ -1,0 +1,149 @@
+# Maurimix<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maurimix</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- أيقونة التطبيق -->
+  <link rel="icon" href="icon.png" type="image/png">
+</head>
+<body class="imdb-style">
+  <div class="container">
+    <!-- الهيدر (يبقى ثابتًا في جميع الصفحات) -->
+    <header>
+      <div class="header-left">
+        <img src="icon.png" alt="أيقونة التطبيق" class="app-icon">
+      </div>
+      <div class="header-right">
+        <button class="login-btn">تسجيل الدخول</button>
+        <div class="lang-selector">
+          <button class="lang-btn">Français</button>
+          <button class="lang-btn active">عربي</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- شريط البحث (يظهر في الصفحة الرئيسية) -->
+    <div id="search-page" class="page">
+      <div class="search-bar">
+        <input type="text" placeholder="ابحث عن مسلسل، فيلم، ممثل...">
+        <span class="search-icon"></span>
+      </div>
+    </div>
+
+    <!-- الصفحات الرئيسية (كل صفحة مخفية افتراضيًا ما عدا الصفحة الرئيسية) -->
+    <div id="home" class="page">
+      <!-- الصفحة الرئيسية: عرض المسلسل المميز وبعض التصنيفات -->
+      <div class="featured-series">
+        <div class="series-image" style="background: url('hakaya.jpg') no-repeat center center/cover;"></div>
+        <div class="series-details">
+          <h2>الحكاية</h2>
+          <p>مسلسل درامي اجتماعي يتكون من 30 حلقة</p>
+          <p>إنتاج: 2025</p>
+          <div class="rating" id="featured-rating">0/10 ⭐⭐⭐⭐⭐</div>
+          <!-- زر عرض الحلقات يُفعل صفحة الحلقات -->
+          <button class="rate-btn" onclick="switchPage('series')">عرض الحلقات</button>
+        </div>
+      </div>
+
+      <div class="categories">
+        <button class="category-btn active">الكل</button>
+        <button class="category-btn">دراما</button>
+        <button class="category-btn">كوميديا</button>
+        <button class="category-btn">أفلام</button>
+        <button class="category-btn">عروض تلفزيونية</button>
+      </div>
+    </div>
+
+    <!-- صفحة الأفلام -->
+    <div id="movies" class="page" style="display:none;">
+      <h3>الأفلام</h3>
+      <div class="movies-list">
+        <div class="movie-item">
+          <p>فيلم: البحث عن نيمو</p>
+          <button class="rate-btn" onclick="rateMovie('البحث عن نيمو')">قيّم الفيلم</button>
+          <span id="rating-البحث-عن-نيمو">تقييم: غير مقيم</span>
+        </div>
+        <div class="movie-item">
+          <p>فيلم: العراب</p>
+          <button class="rate-btn" onclick="rateMovie('العراب')">قيّم الفيلم</button>
+          <span id="rating-العراب">تقييم: غير مقيم</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- صفحة المسلسلات والحلقات -->
+    <div id="series" class="page" style="display:none;">
+      <h3>الحلقات</h3>
+      <div class="episode-list">
+        <!-- سيتم تعبئة قائمة الحلقات عبر JavaScript -->
+      </div>
+    </div>
+
+    <!-- صفحة الممثلين (أو نجوم الشهر) -->
+    <div id="actors" class="page" style="display:none;">
+      <h3>الممثلون</h3>
+      <div class="actors-list">
+        <div class="actor-item">
+          <img src="https://i.ibb.co/L8b8tHk/image.png" alt="الممثل بونه ميده" data-lightbox="image-set" data-title="الممثل بونه ميده">
+          <p>الممثل بونه ميده</p>
+        </div>
+        <div class="actor-item">
+          <img src="https://images.app.goo.gl/9bymAc6WBsMMM1z28" alt="الممثل باب ولد ميني" data-lightbox="image-set" data-title="الممثل باب ولد ميني">
+          <p>الممثل باب ولد ميني</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- صفحة المخرجين -->
+    <div id="directors" class="page" style="display:none;">
+      <h3>المخرجون</h3>
+      <div class="director">
+        <img src="https://i.ibb.co/2vG679L/image.png" alt="المخرج باب ميني" data-lightbox="image-set" data-title="المخرج باب ميني">
+        <div class="director-details">
+          <h2>باب ميني</h2>
+          <p>مخرج سينمائي وتلفزيوني</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- صفحة الإعدادات والتواصل -->
+    <div id="settings" class="page" style="display:none;">
+      <h3>الإعدادات</h3>
+      <button class="setting-item logout-btn">تسجيل الخروج</button>
+      <button class="setting-item night-mode-btn">الوضع الليلي</button>
+      <button class="setting-item favorites-btn">قائمة المفضلة</button>
+      <div class="contact-dev">
+        <h3>تواصل مع المطور</h3>
+        <a href="https://www.facebook.com/share/1FGNHHYkCK/?mibextid=LQQJ4d" class="dev-link facebook-dev" target="_blank">فيسبوك</a>
+        <a href="https://wa.me/22226163730" class="dev-link whatsapp-dev" target="_blank">واتساب: +222 26163730</a>
+        <a href="mailto:medvallmedsalem5@gmail.com" class="dev-link email-dev">medvallmedsalem5@gmail.com</a>
+      </div>
+      <div class="app-social">
+        <h3>حسابات التطبيق</h3>
+        <a href="#" class="app-link facebook-app">فيسبوك</a>
+        <a href="#" class="app-link tiktok-app">تيك توك</a>
+      </div>
+    </div>
+
+    <!-- معلومات التطبيق وإشعار الصيانة (يظهر في أسفل جميع الصفحات) -->
+    <footer>
+      <div class="app-info">
+        <img src="app-icon.png" alt="أيقونة التطبيق" class="app-icon">
+        <p>جميع الحقوق محفوظة لتطبيق Maurimix</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon facebook-app">فيسبوك</a>
+          <a href="#" class="social-icon tiktok-app">تيك توك</a>
+        </div>
+      </div>
+      <div class="maintenance-notice">
+        <p>ملاحظة: سيخضع التطبيق لصيانة شهرية في أول يوم سبت من كل شهر.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- تضمين JavaScript الخاص بالتبديل بين الصفحات -->
+  <script src="script.js"></script>
+</body>
+</html>
